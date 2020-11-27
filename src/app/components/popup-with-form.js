@@ -39,15 +39,11 @@ export class PopUpWithForm extends PopUp {
   setEventListeners() {
     super.setEventListeners();
     this._formValidator.enableValidation();
-
-    safeGetElement(defaultFormConfig.formSelector, this._element)
-      .addEventListener('submit', (evt) => this._submitForm(evt));
+    this._form.addEventListener('submit', (evt) => this._submitForm(evt));
   }
 
   resetEventListeners() {
-    super.setEventListeners();
-
-    safeGetElement(defaultFormConfig.formSelector)
-      .removeEventListener('submit', (evt) => this._submitForm(evt));
+    super.resetEventListeners();
+    this._form.removeEventListener('submit', (evt) => this._submitForm(evt));
   }
 }
